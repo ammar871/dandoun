@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             theme: lightMode,
             themeMode: AppProvider
                 .getInItWatch(cxt)
-                .isDark ? ThemeMode.dark : ThemeMode.light,
+                .isDark ? ThemeMode.light : ThemeMode.dark,
             // AppCubit.get(ctx).isDark ? ThemeMode.dark : ThemeMode.light
 
             initialRoute: splash,
