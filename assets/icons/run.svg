@@ -1,0 +1,7 @@
+<svg id="run" xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
+  <g id="Rectangle_2037" data-name="Rectangle 2037" fill="rgba(255,255,255,0.71)" stroke="#23ad8b" stroke-linecap="round" stroke-width="4" stroke-dasharray="58">
+    <rect width="54" height="54" rx="27" stroke="none"/>
+    <rect x="2" y="2" width="50" height="50" rx="25" fill="none"/>
+  </g>
+  <path id="Icon_awesome-play" data-name="Icon awesome-play" d="M18.473,9.346,3.151.288A2.078,2.078,0,0,0,0,2.086V20.2A2.087,2.087,0,0,0,3.151,22l15.322-9.054A2.087,2.087,0,0,0,18.473,9.346Z" transform="translate(20 14.998)" fill="#23ad8b" opacity="0.81"/>
+</svg>
