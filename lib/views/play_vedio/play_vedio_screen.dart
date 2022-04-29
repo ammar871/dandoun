@@ -1,8 +1,8 @@
 import 'package:dandoun/helpers/styles.dart';
 import 'package:dandoun/views/home_screen/componts/item_icon.dart';
 import 'package:dandoun/widget/custom_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:video_player/video_player.dart';
 
 import 'componts/custom_track_shape.dart';
