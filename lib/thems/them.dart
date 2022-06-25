@@ -63,7 +63,7 @@ final darkMode = ThemeData(
     systemNavigationBarIconBrightness: Brightness.dark,
     systemNavigationBarDividerColor: null,
     statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
+    statusBarIconBrightness: Brightness.light,
     statusBarBrightness: Brightness.dark,
   )
   ),

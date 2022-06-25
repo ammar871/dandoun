@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "177247319568",
+    "project_id": "dandon-1499c",
+    "storage_bucket": "dandon-1499c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177247319568:android:0fde980b2c506d3d853c95",
+        "android_client_info": {
+          "package_name": "com.dandoun.dandoun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177247319568-r31lg213ejnmse9envarv95p3jpnovc0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dandoun.dandoun",
+            "certificate_hash": "7602e79e4834ea79e6b9bc88fb98f25cfc468733"
+          }
+        },
+        {
+          "client_id": "177247319568-b90hgus8d4j5d5g7p58ek7d2a60kv350.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbjaLvxfShbIy2qQuH7_JI8pOAjTRselk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177247319568-b90hgus8d4j5d5g7p58ek7d2a60kv350.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

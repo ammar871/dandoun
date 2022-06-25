@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dandon App</string>
+    <string name="facebook_app_id">5250911701689708</string>
+
+    <string name="facebook_client_token">af3759ef35327ee2d9f54d532ee31ce4</string>
+    <string name="fb_login_protocol_scheme">fb5250911701689708</string>
+
+</resources>

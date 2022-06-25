@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContainerBanner extends StatelessWidget {
-  final String image;
+  final String image,title;
 
   const ContainerBanner({
-    required this.image,
-    Key? key,
-  }) : super(key: key);
+    required this.image,required this.title
+
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ContainerBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           color: Colors.white,
           image:  DecorationImage(
-            image: AssetImage(
+            image: NetworkImage(
                image),
             fit: BoxFit.fill,
           )
@@ -32,18 +32,18 @@ class ContainerBanner extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
 
-          children: const [
+          children:  [
             CustomText(
                 family: "pnuB",
                 size: 15,
-                text: "المعرفة هي غذاء الروح..",
+                text: title,
                 textColor: Colors.white,
                 weight: FontWeight.bold,
                 align: TextAlign.start),
             CustomText(
                 family: "pnuB",
                 size: 15,
-                text: " أفلاطون",
+                text: "",
                 textColor: Colors.white,
                 weight: FontWeight.bold,
                 align: TextAlign.start),

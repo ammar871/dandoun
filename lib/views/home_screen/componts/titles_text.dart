@@ -25,7 +25,7 @@ class TitlesText extends StatelessWidget {
           text: title,
           family: "pnuR",
           size: 30,
-          textColor: Colors.white, align: TextAlign.start,),
+          textColor: Theme.of(context).textTheme.bodyText1!.color!, align: TextAlign.start,),
         InkWell(
           onTap: onPress,
           child: Container(
@@ -39,13 +39,13 @@ class TitlesText extends StatelessWidget {
                   text: textButton,
                   family: "pnuL",
                   size: 18,
-                  textColor: Colors.white, align: TextAlign.end,),
+                  textColor: Theme.of(context).textTheme.bodyText1!.color!, align: TextAlign.end,),
                 const SizedBox(
                   width: 5,
                 ),
-                const Icon(
+                 Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.white,
+                  color: Theme.of(context).textTheme.bodyText1!.color!,
                   size: 20,
                 )
               ],

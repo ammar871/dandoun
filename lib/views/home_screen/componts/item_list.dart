@@ -1,42 +1,49 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dandoun/bloc/app_cubit/app_cubit.dart';
+import 'package:dandoun/bloc/home_cubit/home_cubit.dart';
 import 'package:dandoun/controller/router.dart';
 import 'package:dandoun/helpers/styles.dart';
+import 'package:dandoun/models/home_model.dart';
 import 'package:dandoun/widget/custom_text.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+
 import 'package:percent_indicator/percent_indicator.dart';
+import '../../../helpers/constants.dart';
+import '../../../helpers/functions.dart';
+import '../../details_artical/details_artical.dart';
 import 'item_icon.dart';
 
 class ItemList extends StatefulWidget {
+  final Post post;
+
+  ItemList(this.post);
+
   @override
   State<ItemList> createState() => _ItemListState();
 }
 
 class _ItemListState extends State<ItemList> {
-  VideoPlayerController? _controller;
-
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
-      ..initialize().then((_) {
-        print("jsjsjs");
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      }).onError((error, stackTrace) {
-        print("error");
-      });
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, details);
+        if(widget.post.id==currentUser.phone || widget.post.type=="free"){
+
+          pushPage(
+              context: context, page: DetailsArticleScreen(id: widget.post.id!));
+        }else {
+          AppCubit.get(context).changeNav(2);
+        }
+
       },
       child: Container(
-        height: 345,
+        height: 350,
         width: MediaQuery.of(context).size.width * .8,
         margin: const EdgeInsets.only(left: 32),
         decoration: BoxDecoration(
@@ -53,73 +60,94 @@ class _ItemListState extends State<ItemList> {
                 minVerticalPadding: 13.0,
                 contentPadding:
                     const EdgeInsets.only(left: 0.0, right: 0.0, top: 0),
-                leading: Image.asset(
-                  "assets/images/img2.png",
+                leading: CachedNetworkImage(
+                  imageUrl: baseurlImage + widget.post.publisherImage!,
                   width: 29,
                   height: 29,
                   fit: BoxFit.cover,
+                  placeholder: (context, url) => Center(
+                    child: Container(
+                        width: 25,
+                        height: 25,
+                        child: const CircularProgressIndicator(
+                          color: Colors.green,
+                        )),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                      width: 29,
+                      height: 29,
+                      child: const Center(
+                          child: Icon(
+                        Icons.error,
+                        size: 25,
+                      ))),
                 ),
-                title: const Padding(
+                title: Padding(
                   padding: EdgeInsets.only(bottom: 5),
                   child: CustomText(
                       family: "pnuB",
                       size: 8,
-                      text: "وول ستريت جورنال",
+                      text: widget.post.publisherName!,
                       textColor: Colors.white,
                       weight: FontWeight.bold,
                       align: TextAlign.start),
                 ),
-                subtitle: const CustomText(
+                subtitle: CustomText(
                     family: "pnuL",
                     size: 8,
-                    text: "ساره نيدل مان",
+                    text: widget.post.publisherSummary!,
                     textColor: textColor,
                     weight: FontWeight.w400,
                     align: TextAlign.start),
               ),
             ),
             SizedBox(
-              height: 180,
-              child: _controller!.value.isInitialized
-                  ? Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        AspectRatio(
-                          aspectRatio: _controller!.value.aspectRatio,
-                          child: VideoPlayer(_controller!),
-                        ),
-                        Positioned(
-                            left: 20,
-                            bottom: 20,
-                            child: CircularPercentIndicator(
-                              radius: 35.0,
-                              animation: true,
-                              animationDuration: 1000,
-                              lineWidth: 3.0,
-                              percent: 0.7,
-                              center: GestureDetector(
-                                  onTap: () {
-                                    print("hshssh");
-                                    _controller!.play();
-                                    setState(() {});
-                                  },
-                                  child: Icon(
-                                    _controller!.value.isPlaying
-                                        ? Icons.pause
-                                        : Icons.play_arrow,
-                                    color: secondColor,
-                                    size: 25,
-                                  )),
-                              circularStrokeCap: CircularStrokeCap.butt,
-                              backgroundColor: Colors.transparent,
-                              progressColor: secondColor,
-                            ))
-                      ],
-                    )
-                  : Container(),
-            ),
-
-
+                height: 170,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: baseurlImage + widget.post.photo!,
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) => Center(
+                        child: Container(
+                            width: 25,
+                            height: 25,
+                            child: const CircularProgressIndicator(
+                              color: Colors.green,
+                            )),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                          height: 110,
+                          child: const Center(
+                              child: Icon(
+                            Icons.error,
+                            size: 25,
+                          ))),
+                    ),
+                    Positioned(
+                        left: 20,
+                        bottom: 20,
+                        child: CircularPercentIndicator(
+                          radius: 35.0,
+                          animation: true,
+                          animationDuration: 1000,
+                          lineWidth: 3.0,
+                          percent: 0.7,
+                          center: GestureDetector(
+                              onTap: () {},
+                              child: const Icon(
+                                Icons.play_arrow,
+                                color: secondColor,
+                                size: 25,
+                              )),
+                          circularStrokeCap: CircularStrokeCap.butt,
+                          backgroundColor: Colors.transparent,
+                          progressColor: secondColor,
+                        ))
+                  ],
+                )),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 11),
@@ -128,13 +156,12 @@ class _ItemListState extends State<ItemList> {
                     const SizedBox(
                       height: 8,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: double.infinity,
                       child: CustomTextWithLines(
                         family: "pnuR",
                         size: 14,
-                        text:
-                            "لأشياء المدهشة التي سيقدمها لنا  الميتافيرس . وما ",
+                        text: widget.post.title!,
                         textColor: secondColor,
                         weight: FontWeight.w400,
                         align: TextAlign.start,
@@ -144,13 +171,12 @@ class _ItemListState extends State<ItemList> {
                     const SizedBox(
                       height: 3,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       // width: double.infinity,
                       child: CustomTextWithLines(
                         family: "pnuL",
                         size: 11,
-                        text:
-                            "المبدعون في عالم التقنية لديهم رؤى تتنبأ بعالم آخر مغاير لعالمنا الواقعي. الناس ستحيا فيه حياة كانت في السابق مجرد ضرب من الخيال.",
+                        text: widget.post.description!,
                         textColor: Colors.white,
                         weight: FontWeight.w300,
                         align: TextAlign.start,
@@ -169,17 +195,77 @@ class _ItemListState extends State<ItemList> {
                             icon: "assets/icons/playlist.svg",
                             onPress: () {},
                           ),
-                          IconItem(
-                            icon: "assets/icons/download.svg",
-                            onPress: () {},
-                          ),
+                          HomeCubit.get(context).loadDownloadFileDialogShowing &&
+                        HomeCubit.get(context).postDownloadId==widget.post.id
+                              ?  SizedBox(
+                                  height: 15,
+                                  width: 15,
+                                  child: CircularProgressIndicator(
+                                    value: HomeCubit.get(context).precentDouble/100,
+                                    color: Colors.white,
+                                    backgroundColor: Theme.of(context).textTheme.bodyText1!.color!,
+                                    strokeWidth: 3,
+                                    valueColor:  const AlwaysStoppedAnimation(secondColor),
+
+                                  ))
+                              : IconItem(
+                                  icon: "assets/icons/download.svg",
+                                  onPress: () async {
+
+                                    if(widget.post.id==currentUser.phone || widget.post.type=="free"){
+
+                                      HomeCubit.get(context)
+                                          .hasAcceptedPermissions()
+                                          .then((value) async {
+                                        if (value) {
+                                          var path = await ExternalPath
+                                              .getExternalStoragePublicDirectory(
+                                              ExternalPath
+                                                  .DIRECTORY_DOWNLOADS);
+
+                                          HomeCubit.get(context).download2(
+
+                                              baseurlMp3 + widget.post.sound!,
+                                              path +
+                                                  DateTime.now()
+                                                      .millisecondsSinceEpoch
+                                                      .toString() +
+                                                  ".mp3",
+                                              context: context,id: widget.post.id!,);
+                                        } else {
+                                          HomeCubit.get(context).getPermission();
+                                        }
+                                      });
+                                    }else {
+                                      AppCubit.get(context).changeNav(2);
+                                    }
+
+
+
+
+                                  },
+                                ),
                           IconItem(
                             icon: "assets/icons/share.svg",
                             onPress: () {},
                           ),
                           IconItem(
+                            isFav: true,
+                            widget: Icon(
+                              HomeCubit.get(context)
+                                      .favorites
+                                      .containsValue(widget.post.id)
+                                  ? Icons.star
+                                  : Icons.star_border,
+                              color: Colors.white,
+                              size: 17,
+                            ),
                             icon: "assets/icons/star.svg",
-                            onPress: () {},
+                            onPress: () {
+                              HomeCubit.get(context)
+                                  .changeFavorite(widget.post.id!)
+                                  .then((value) {});
+                            },
                           )
                         ],
                       ),

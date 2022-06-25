@@ -1,14 +1,29 @@
+import 'package:dandoun/bloc/app_cubit/app_cubit.dart';
 import 'package:dandoun/controller/router.dart';
+import 'package:dandoun/helpers/constants.dart';
 import 'package:dandoun/helpers/styles.dart';
-import 'package:dandoun/providers/app_provider.dart';
+
 import 'package:dandoun/widget/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("gfghdg"+token);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +59,8 @@ class SplashScreen extends StatelessWidget {
                 fontFamily: "pnuM",
                 onPress: () {
 
-                  AppProvider.getInItRead(context).changeAppMode();
+                  // AppCubit.get(context).changeAppMode();
+                  Navigator.pushNamed(context, register);
                 },
                 color: secondColor,
                 textColor: Theme.of(context).textTheme.bodyText2!.color!,
@@ -52,20 +68,20 @@ class SplashScreen extends StatelessWidget {
                 redius: 10,
                 isCustomColor: true,
                 height: 44),
-            const SizedBox(
-              height: 19,
-            ),
-            CustomButton3(
-                text: "الاستمرار كضيف",
-                fontFamily: "pnuL",
-                onPress: () {},
-                color: secondColor,
-                textColor: secondColor,
-                fontSize: 14,
-                redius: 10,
-                isCustomColor: true,
-                isBorder: true,
-                height: 44),
+            // const SizedBox(
+            //   height: 19,
+            // ),
+            // CustomButton3(
+            //     text: "الاستمرار كضيف",
+            //     fontFamily: "pnuL",
+            //     onPress: () {},
+            //     color: secondColor,
+            //     textColor: secondColor,
+            //     fontSize: 14,
+            //     redius: 10,
+            //     isCustomColor: true,
+            //     isBorder: true,
+            //     height: 44),
             const SizedBox(
               height: 110,
             ),
