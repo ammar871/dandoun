@@ -1,14 +1,13 @@
 import 'package:dandoun/bloc/auth_cubit/auth_cubit.dart';
-import 'package:dandoun/controller/router.dart';
+import 'package:dandoun/helpers/functions.dart';
 import 'package:dandoun/helpers/styles.dart';
 import 'package:dandoun/widget/custom_button2.dart';
 import 'package:dandoun/widget/custom_text.dart';
 import 'package:dandoun/widget/custom_text_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../helpers/helper_function.dart';
+import '../privacy_screen/privacy_screen.dart';
 import 'componts/rich_text_register.dart';
 
 
@@ -42,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _controllerPass.dispose();
   }
 
-  final _key=GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
@@ -171,14 +170,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(
               height: 28,
             ),
-            const CustomText(
-                family: "pnuM",
-                size: 12,
-                text:
-                    "بتسجيل حساب جديد فان هذا يعني انك ق وافقت علي كافة الإجراءات و القوانين الخاصة بالمناصة",
-                textColor: Colors.white,
-                weight: FontWeight.bold,
-                align: TextAlign.start),
+            InkWell(
+              onTap: (){
+                pushPage(page: PrivacyPolicyScreen(),context: context);
+              },
+              child: const CustomText(
+                  family: "pnuM",
+                  size: 12,
+                  text:
+                      "بتسجيل حساب جديد فان هذا يعني انك قد وافقت علي كافة الإجراءات و القوانين الخاصة بالمناصة",
+                  textColor: Colors.white,
+                  weight: FontWeight.bold,
+                  align: TextAlign.start),
+            ),
             const SizedBox(
               height: 25,
             ),
